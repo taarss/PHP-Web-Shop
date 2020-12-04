@@ -1,5 +1,7 @@
 $base-color: #007681;
-
+body{
+  z-index: 100;
+}
 #logo {
   width: 100px;
   height: 40px;
@@ -43,4 +45,41 @@ $base-color: #007681;
   background-image: url(https://www.wasdkeyboards.com/pub/media/wysiwyg/hp/anim_bg2.jpg);
   background-position: center;
   background-size: cover;
+}
+
+#catagoryText{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+#catagory:hover{
+  transform: scale(1.1);
+}
+#catagory{
+  color: #007681;
+  height: 300px;
+  background-color: white;
+  transition: 300ms;
+  img{
+    opacity: 0.5;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+#navBar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#header{
+  padding-top: 60px;
 }
