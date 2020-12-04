@@ -1,0 +1,46 @@
+$base-color: #007681;
+
+#logo {
+  width: 100px;
+  height: 40px;
+}
+
+#notice {
+  color: $base-color;
+}
+#imgSlide {
+  height: 700px;
+  object-fit: cover;
+}
+#buyBtn {
+  background-color: $base-color;
+  color: white;
+}
+#bestSellersIndicator {
+  position: relative;
+  li {
+    background-color: darkgray;
+  }
+}
+
+#bestSellerImg {
+  height: 300px;
+}
+#addToCart {
+  background-color: $base-color;
+  color: white;
+}
+
+#newsletterHover {
+  transition: 600ms;
+}
+#newsletterHover:hover {
+  background-color: black;
+  color: white;
+}
+
+#customKeycapsSection {
+  background-image: url(https://www.wasdkeyboards.com/pub/media/wysiwyg/hp/anim_bg2.jpg);
+  background-position: center;
+  background-size: cover;
+}
