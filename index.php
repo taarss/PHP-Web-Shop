@@ -1,3 +1,7 @@
+<?php 
+    include 'main.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +30,22 @@
             </div>
         </div>
         <?php 
-        echo var_dump($_SESSION);
-            if ($_SESSION['username'] != '') { ?>
+            if ($_SESSION['name'] != '') { ?>
+                <div class="dropdown show mt-4 mr-4">
+                <a class="mr-5 align-self-center align-items-center dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="d-flex justify-content-center align-items-center">
+                            <i class="far fa-user-circle fa-2x text-secondary"></i>
+                        <p class="m-0"><?php echo $_SESSION['name'] ?></p>
+                    </div>
+                    
+                </a>
 
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Orders</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                </div>
+                </div>
         <?php
             }
             else {?>

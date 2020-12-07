@@ -22,15 +22,16 @@ function checkLoggedIn($con)
         if ($stmt->num_rows > 0) {
         } else {
             // If the user is not logged in redirect to the login page.
-            header('Location: index.php');
+            header('Location: login.php');
             exit;
         }
     } else if (!isset($_SESSION['loggedin'])) {
         // If the user is not logged in redirect to the login page.
-        header('Location: index.php');
+        header('Location: login.php');
         exit;
     }
 }
+/*
 if (isset($_SESSION['loggedin'])) {
 
     $stmt = $con->prepare('SELECT user_id, last_heartbeat FROM online_users');
@@ -49,12 +50,12 @@ if (isset($_SESSION['loggedin'])) {
                 $stmt->close();
             }
         }
-        foreach ($users as $row) {
+        foreach ($users as $row) {*/
             /*
         $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $result);
         $myDateTime2 = DateTime::createFromFormat('Y-m-d H:i:s', $dtNow);
         $dtToCompare = $myDateTime;
-        $diff = $dtNow - $dtToCompare;*/
+        $diff = $dtNow - $dtToCompare;
             $newTime = $row['last_heartbeat'];
             $dtNow = new DateTime();
             $result = $dtNow->format('Y-m-d H:i:s');
@@ -76,7 +77,7 @@ if (isset($_SESSION['loggedin'])) {
         $stmt->close();
     }
 }
-
+*/
 
 function isUserOnline($users)
 {
