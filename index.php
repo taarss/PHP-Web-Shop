@@ -1,3 +1,7 @@
+<?php 
+    include 'main.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,23 +11,49 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 
 <body>
-    <nav class="d-flex bg-light pb-2 navbar-fixed-top">
-        <img class="img-fluid m-3" id="logo" src="img/wasd-logo.png">
-        <div class="container m-0">
-            <p id="notice">Free Shipping on All Orders!</p>
-            <ul class="nav col-6 justify-content-between text-dark">
-                <li><a href="#" class="text-dark">Full Boards</a></li>
-                <li><a href="#" class="text-dark">Switches</a></li>
-                <li><a href="#" class="text-dark">Keycaps</a></li>
-                <li><a href="#" class="text-dark">Accessories</a></li>
-                <li><a href="#" class="text-dark">Sale</a></li>
-            </ul>
+    <nav class="d-flex bg-light pb-2 navbar-fixed-top border-bottom justify-content-between" id="navBar">
+        <div class="d-flex col-6">
+            <img class="img-fluid m-3" id="logo" src="img/wasd-logo.png">
+            <div class="container m-0">
+                <p id="notice">Free Shipping on All Orders!</p>
+                <ul class="nav col-12 justify-content-between text-dark">
+                    <li><a href="#" class="text-dark">Home</a></li>
+                    <li><a href="#" class="text-dark">Full Boards</a></li>
+                    <li><a href="#" class="text-dark">Switches</a></li>
+                    <li><a href="#" class="text-dark">Keycaps</a></li>
+                    <li><a href="#" class="text-dark">Accessories</a></li>
+                </ul>
+            </div>
         </div>
+        <?php 
+            if ($_SESSION['name'] != '') { ?>
+                <div class="dropdown show mt-4 mr-4">
+                <a class="mr-5 align-self-center align-items-center dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="d-flex justify-content-center align-items-center">
+                            <i class="far fa-user-circle fa-2x text-secondary"></i>
+                        <p class="m-0"><?php echo $_SESSION['name'] ?></p>
+                    </div>
+                    
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Orders</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                </div>
+                </div>
+        <?php
+            }
+            else {?>
+                <a class="mr-5 align-self-center" href="login.php"><i class="fas fa-sign-in-alt fa-2x text-secondary "></i></a>
+        <?php } ?>
+       
     </nav>
-    <header>
+    <header id="header">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -32,7 +62,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" id="imgSlide" src="img/k7.jpg" alt="First slide">
+                    <img class="d-block w-100" id="imgSlide" src="img/k9.png" alt="First slide">
                     <div class="carousel-caption text-left">
                         <h5>A keyboard for every taste</h5>
                         <p class=" col-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae lacus tellus. Aliquam erat volutpat. Cras condimentum felis vel elit</p>
@@ -48,7 +78,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" id="imgSlide" src="img/k9.png" alt="Third slide">
+                    <img class="d-block w-100" id="imgSlide" src="img/k7.jpg" alt="Third slide">
                     <div class="carousel-caption text-left">
                         <h5>Top quality custom keyboards</h5>
                         <p class=" col-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae lacus tellus. Aliquam erat volutpat. Cras condimentum felis vel elit</p>
@@ -255,6 +285,45 @@
                 </div>
             </div>
         </section>
+        <section class="d-flex flex-wrap justify-content-center mb-5">
+            <h4 class="text-center py-5 col-12">Categories</h4>
+            <div class="d-flex border col-2 p-0 m-2">
+                <a href="#">
+                    <div class=" position-relative" id="catagory">
+                        <img class="img-fluid" src="img/switch1.webp">
+                        <h5 id="catagoryText">Switches</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="d-flex border col-2 p-0 m-2">
+                <a href="#">
+                    <div class=" position-relative" id="catagory">
+                        <img class="img-fluid" src="img/keycaps1.jpg">
+                        <h5 id="catagoryText">Keycaps</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="d-flex border col-2 p-0 m-2">
+                <a href="#">
+                    <div class=" position-relative" id="catagory">
+                        <img class="img-fluid" src="img/case1.webp">
+                        <h5 id="catagoryText">Cases</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="d-flex border col-2 p-0 m-2">
+                <a href="#">
+                    <div class=" position-relative" id="catagory">
+                        <img class="img-fluid" src="img/circuit1.jpg">
+                        <h5 id="catagoryText">Circuit boards</h5>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="bg-light col-12 d-flex justify-content-center p-5">
+            <img src="img/freeShipping2.png">
+        </section>
+
     </main>
     <footer>
 
