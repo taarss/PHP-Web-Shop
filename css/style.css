@@ -96,4 +96,21 @@ body {
 #header {
   padding-top: 60px;
 }
+
+#loginBackground {
+  background-image: url(../img/k9.png);
+  height: 100vh;
+}
+
+#adminProducts {
+  background-color: #b5e1ae;
+}
+
+#adminOrders {
+  background-color: #6fb7df;
+}
+
+#adminAccounts {
+  background-color: #fffa81;
+}
 /*# sourceMappingURL=style.css.map */
