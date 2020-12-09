@@ -21,7 +21,7 @@
             <div class="container m-0">
                 <p id="notice">Free Shipping on All Orders!</p>
                 <ul class="nav col-12 justify-content-between text-dark">
-                    <li><a href="#" class="text-dark">Home</a></li>
+                    <li><a href="index.php" class="text-dark">Home</a></li>
                     <li><a href="#" class="text-dark">Full Boards</a></li>
                     <li><a href="#" class="text-dark">Switches</a></li>
                     <li><a href="#" class="text-dark">Keycaps</a></li>
@@ -44,6 +44,7 @@
                     <a class="dropdown-item" href="#">Profile</a>
                     <a class="dropdown-item" href="#">Orders</a>
                     <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
                 </div>
         <?php

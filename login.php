@@ -34,20 +34,61 @@ if (isset($_COOKIE['rememberme']) && !empty($_COOKIE['rememberme'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,minimum-scale=1">
 	<title>Login</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 
-<body>
+<body class="d-flex justify-content-center align-items-center" id="loginBackground">
+<nav class="d-flex bg-light pb-2 navbar-fixed-top border-bottom justify-content-between" id="navBar">
+        <div class="d-flex col-6">
+            <img class="img-fluid m-3" id="logo" src="img/wasd-logo.png">
+            <div class="container m-0">
+                <p id="notice">Free Shipping on All Orders!</p>
+                <ul class="nav col-12 justify-content-between text-dark">
+                    <li><a href="index.php" class="text-dark">Home</a></li>
+                    <li><a href="#" class="text-dark">Full Boards</a></li>
+                    <li><a href="#" class="text-dark">Switches</a></li>
+                    <li><a href="#" class="text-dark">Keycaps</a></li>
+                    <li><a href="#" class="text-dark">Accessories</a></li>
+                </ul>
+            </div>
+        </div>
+        <?php 
+            if ($_SESSION['name'] != '') { ?>
+                <div class="dropdown show mt-4 mr-4">
+                <a class="mr-5 align-self-center align-items-center dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="d-flex justify-content-center align-items-center">
+                            <i class="far fa-user-circle fa-2x text-secondary"></i>
+                        <p class="m-0"><?php echo $_SESSION['name'] ?></p>
+                    </div>
+                    
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Orders</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                </div>
+                </div>
+        <?php
+            }
+            else {?>
+                <a class="mr-5 align-self-center" href="login.php"><i class="fas fa-sign-in-alt fa-2x text-secondary "></i></a>
+        <?php } ?>
+       
+    </nav>
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
 		<symbol id="checkmark" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-miterlimit="10" fill="none" d="M22.9 3.7l-15.2 16.6-6.6-7.1">
 			</path>
 		</symbol>
 	</svg>
-	<div class="login">
-		<h1>Login</h1>
+	<div class="login bg-light rounded d-flex flex-column col-2">
+		<h1 class="py-5 text-center">Login</h1>
 		<div class="loginWrapper">
 			<form action="authenticate.php" method="post">
 				<div>
@@ -61,11 +102,7 @@ if (isset($_COOKIE['rememberme']) && !empty($_COOKIE['rememberme'])) {
 
 				<div class="promoted-checkbox">
 					<input name="rememberme" id="tmp" type="checkbox" class="promoted-input-checkbox" />
-					<label for="tmp">
-						<svg>
-							<use xlink:href="#checkmark" /></svg>
-						remember me
-					</label>
+					<p>remember me</p>
 				</div>
 				<a class="forgotPass" href="forgotpassword.php">Forgot Password?</a>
 				<div>
@@ -101,6 +138,7 @@ if (isset($_COOKIE['rememberme']) && !empty($_COOKIE['rememberme'])) {
 			});
 		});
 	</script>
+	
 </body>
 
 </html>
