@@ -21,6 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -67,7 +68,7 @@
        
     </nav>
     <main id="header" class="d-flex my-5 flex-wrap">
-        <div class="border rounded p-5 col-3 m-3" id="adminProducts">
+        <div class="border rounded p-5 col-4 m-3" id="adminProducts">
             <h5>Products</h5>
             <div>
                 <p class="m-0 mt-2">Add new product</p>
@@ -93,7 +94,7 @@
                 <button>Manage</button>
             </div>
         </div>
-        <div class="border rounded p-5 col-3 m-3" id="adminAccounts">
+        <div class="border rounded p-5 col-2 m-3" id="adminAccounts">
             <h5>Accounts</h5>
             <div>
                 <p class="m-0 mt-2">View Accounts</p>
@@ -104,44 +105,22 @@
                 <button>Manage</button>
             </div>
         </div>
+        <div class="border rounded p-5 col-2 m-3" id="adminCategories">
+            <h5>Categories</h5>
+            <div>
+                <p class="m-0 mt-2">Add categories</p>
+                <button class="addCategoriesBtn">Add</button>
+            </div>
+            <div>
+                <p class="m-0 mt-2">Manage categories</p>
+                <button class="manageCategoriesBtn">Manage</button>
+            </div>
+        </div>
     </main>
-    <script>
-        	document.querySelector(".addProductBtn").onclick = e => {
-            let adp_underlay = document.createElement('div');
-            adp_underlay.className = 'adp-underlay';
-            document.body.appendChild(adp_underlay);
-            let adp = document.createElement('div');
-            adp
-            adp.className = 'adp';
-            adp.innerHTML = `
-            <button class="adpBtn w-25 button bg-danger text-light border-0">X</button>
-            <h3>Create product</h3>
-            <form class="postForm d-flex flex-column" action="home.php" method="post" onsubmit="updatePosts"()>
-                <input type="file" name="post_img"><br><br>
-                <input type="text" name="post_name" placeholder="name" required>
-                <input type="text" name="post_price" placeholder="price" required>
-                <input type="text" name="post_manufactur" placeholder="manufactur">
-                <select id="cars" name="post_type"  required>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
-                </select>
-                <textarea name="description" required style="resize: none; placeholder="Write your description here:" required></textarea>
-                <input type="submit">
-            </form>
-            `;
-            document.body.appendChild(adp);
-            document.querySelector(".adpBtn").onclick = e => {
-                e.preventDefault();
-                document.body.removeChild(adp_underlay);
-                document.body.removeChild(adp);
-            }
-
-}
-
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/manageCategories.js"></script>
+    <script src="js/addCategories.js"></script>
+    <script src="js/addProduct.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

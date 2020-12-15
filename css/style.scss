@@ -98,6 +98,9 @@ body{
 #adminAccounts{
   background-color: rgb(255, 250, 129);
 }
+#adminCategories{
+  background-color: rgb(252, 169, 133);
+}
 .adp {
   display: flex;
   box-sizing: border-box;
@@ -106,9 +109,8 @@ body{
   z-index: 99999;
   left: 50%;
   top: 50%;
+  height: auto;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 400px;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
@@ -144,4 +146,9 @@ body{
   top: 0;
   left: 0;
   z-index: 99998;
+}
+
+
+.manageCategoriesTable{
+  form:nth-child(odd) {background: lightgray}
 }

@@ -1,5 +1,10 @@
 <?php 
     include 'main.php';
+    $stmt = $con->prepare('SELECT * FROM categories');
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$categories = $result->fetch_all(MYSQLI_ASSOC);
+	$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -288,38 +293,19 @@
         </section>
         <section class="d-flex flex-wrap justify-content-center mb-5">
             <h4 class="text-center py-5 col-12">Categories</h4>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/switch1.webp">
-                        <h5 id="catagoryText">Switches</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/keycaps1.jpg">
-                        <h5 id="catagoryText">Keycaps</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/case1.webp">
-                        <h5 id="catagoryText">Cases</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/circuit1.jpg">
-                        <h5 id="catagoryText">Circuit boards</h5>
-                    </div>
-                </a>
-            </div>
+            <?php 
+                foreach ($categories as $category) {?>
+                <div class="d-flex border col-2 p-0 m-2">
+                    <a href="#">
+                        <div class=" position-relative" id="catagory">
+                            <img class="img-fluid" src="<?= $category['icon'] ?>">
+                            <h5 id="catagoryText"><?= $category['name'] ?></h5>
+                        </div>
+                    </a>
+                </div>
+            <?php
+                }
+            ?>
         </section>
         <section class="bg-light col-12 d-flex justify-content-center p-5">
             <img src="img/freeShipping2.png">
