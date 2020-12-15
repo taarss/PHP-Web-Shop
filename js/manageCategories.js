@@ -29,11 +29,13 @@ document.querySelector(".manageCategoriesBtn").onclick = e => {
                 let nameInput = document.createElement("input");
                 nameInput.setAttribute("type", "text");
                 nameInput.setAttribute("value", element["name"]);
+                nameInput.setAttribute("name", "name");
                 nameInput.setAttribute("class", "col-3 categoryNameUpdateInput");
                 rowForm.appendChild(nameInput);
                 let imageInput = document.createElement("input");
                 imageInput.setAttribute("type", "file");
                 imageInput.setAttribute("class", "col-3 categoryImageUpdateInput");
+                imageInput.setAttribute("name", "post_img");
                 rowForm.appendChild(imageInput);
                 let radio1 = document.createElement("input");
                 radio1.setAttribute("type", "radio");
@@ -54,51 +56,65 @@ document.querySelector(".manageCategoriesBtn").onclick = e => {
                 rowForm.appendChild(label1);
                 rowForm.appendChild(radio2);
                 rowForm.appendChild(label2);
+                rowForm.setAttribute("action", "updateCategory.php")
+                rowForm.setAttribute("method", "post")
                 let saveChangesInput = document.createElement("input");
                 saveChangesInput.setAttribute("type", "submit");
                 saveChangesInput.setAttribute("class", "col-1");
                 rowForm.appendChild(saveChangesInput);
-                rowForm.setAttribute("class", "col-12");
+                rowForm.setAttribute("class", "col-12 updateCategoryForm");
                 let deleteData = document.createElement("button");
                 deleteData.innerHTML = "delete";
                 deleteData.setAttribute("class", "col-1 border border-dark bg-danger text-white");
+                deleteData.addEventListener('click', function(){
+                    deleteCategory(this.parentElement.querySelector(".categoryId").value,
+                    this.parentElement.querySelector('input[name = "updateDelete"]:checked').value, 
+                    );
+                });
                 rowForm.appendChild(deleteData);
-                let categoryId = document.createElement("p");
-                categoryId.innerHTML = element["id"];
+                let categoryId = document.createElement("input");
+                categoryId.setAttribute("type", "text");
+                categoryId.setAttribute("name", "id");
+                categoryId.value = element["id"];
                 categoryId.style.visibility = "hidden";
                 categoryId.style.position = "absolute";
                 categoryId.setAttribute("class", "categoryId");
                 rowForm.appendChild(categoryId);
-                rowForm.addEventListener('submit', function(){
-                    updateAllProducts(this.querySelector(".categoryId").innerHTML, 
-                    this.querySelector(".categoryNameUpdateInput").value,
-                    this.querySelector('input[name = "updateDelete"]:checked').value, 
-                    this.querySelector(".categoryImageUpdateInput").value)
-                    ;
-                });
                 document.querySelector(".manageCategoriesTable").appendChild(rowForm);
             });
         }
     });
     
-    function updateAllProducts(id, name,productRealtion, icon) {
-        console.log(productRealtion);
-            $.ajax({
-                
-                url: 'updateCategory.php',
-                type: 'post',
-                data: {
-                    "id": id,
-                    "productRelation": productRealtion,
-                    "name": name,
-                    "icon": icon
-                },
-                success: function(data) { 
-                    console.log(data);
-                }
-            });    
-    }
 
+    $("#updateCategoryForm").submit(function(event) {
+        event.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function(data) {
+                
+            }
+        });
+    });
+
+    function deleteCategory(id, productRealtion) {
+        $.ajax({
+            url: 'deleteCategory.php',
+            type: 'post',
+            data: {
+                "deleteCategory": 1,
+                "productRealtion": productRealtion,
+                "id": id,
+            },
+            success: function(data) { 
+                console.log(data);
+            }
+        });
+        
+    }
 
 
     document.body.appendChild(adp);
