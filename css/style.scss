@@ -152,3 +152,12 @@ body{
 .manageCategoriesTable{
   form:nth-child(odd) {background: lightgray}
 }
+
+.manageProductsImg{
+  width: 270px !important;
+}
+
+.hiddenTableResult{
+  visibility: collapse;
+}
+

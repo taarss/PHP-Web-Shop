@@ -76,7 +76,7 @@
             </div>
             <div>
                 <p class="m-0 mt-2">Manage products</p>
-                <button>Manage</button>
+                <button class="manageProductsBtn">Manage</button>
             </div>
             <div>
                 <p class="m-0 mt-2">Manage product showcase</p>
@@ -117,6 +117,7 @@
             </div>
         </div>
     </main>
+    <script src="js/manageProducts.js"></script>
     <script src="js/manageCategories.js"></script>
     <script src="js/addCategories.js"></script>
     <script src="js/addProduct.js"></script>
