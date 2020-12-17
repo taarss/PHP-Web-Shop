@@ -1,5 +1,10 @@
 <?php 
     include 'main.php';
+    $stmt = $con->prepare('SELECT * FROM categories');
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$categories = $result->fetch_all(MYSQLI_ASSOC);
+	$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -15,45 +20,11 @@
 </head>
 
 <body>
-    <nav class="d-flex bg-light pb-2 navbar-fixed-top border-bottom justify-content-between" id="navBar">
-        <div class="d-flex col-6">
-            <img class="img-fluid m-3" id="logo" src="img/wasd-logo.png">
-            <div class="container m-0">
-                <p id="notice">Free Shipping on All Orders!</p>
-                <ul class="nav col-12 justify-content-between text-dark">
-                    <li><a href="index.php" class="text-dark">Home</a></li>
-                    <li><a href="#" class="text-dark">Full Boards</a></li>
-                    <li><a href="#" class="text-dark">Switches</a></li>
-                    <li><a href="#" class="text-dark">Keycaps</a></li>
-                    <li><a href="#" class="text-dark">Accessories</a></li>
-                </ul>
-            </div>
-        </div>
-        <?php 
-            if ($_SESSION['name'] != '') { ?>
-                <div class="dropdown show mt-4 mr-4">
-                <a class="mr-5 align-self-center align-items-center dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="d-flex justify-content-center align-items-center">
-                            <i class="far fa-user-circle fa-2x text-secondary"></i>
-                        <p class="m-0"><?php echo $_SESSION['name'] ?></p>
-                    </div>
-                    
-                </a>
+    <?php
+    
+    include 'nav.php';
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Orders</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="logout.php">Logout</a>
-                </div>
-                </div>
-        <?php
-            }
-            else {?>
-                <a class="mr-5 align-self-center" href="login.php"><i class="fas fa-sign-in-alt fa-2x text-secondary "></i></a>
-        <?php } ?>
-       
-    </nav>
+    ?>
     <header id="header">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -288,38 +259,19 @@
         </section>
         <section class="d-flex flex-wrap justify-content-center mb-5">
             <h4 class="text-center py-5 col-12">Categories</h4>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/switch1.webp">
-                        <h5 id="catagoryText">Switches</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/keycaps1.jpg">
-                        <h5 id="catagoryText">Keycaps</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/case1.webp">
-                        <h5 id="catagoryText">Cases</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="d-flex border col-2 p-0 m-2">
-                <a href="#">
-                    <div class=" position-relative" id="catagory">
-                        <img class="img-fluid" src="img/circuit1.jpg">
-                        <h5 id="catagoryText">Circuit boards</h5>
-                    </div>
-                </a>
-            </div>
+            <?php 
+                foreach ($categories as $category) {?>
+                <div class="d-flex border col-2 p-0 m-2">
+                    <a href="products.php?category=<?=$category['id'] ?>">
+                        <div class=" position-relative" id="catagory">
+                            <img class="img-fluid" src="<?= $category['icon'] ?>">
+                            <h5 id="catagoryText"><?= $category['name'] ?></h5>
+                        </div>
+                    </a>
+                </div>
+            <?php
+                }
+            ?>
         </section>
         <section class="bg-light col-12 d-flex justify-content-center p-5">
             <img src="img/freeShipping2.png">
