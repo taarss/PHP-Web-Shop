@@ -10,14 +10,25 @@ if (mysqli_connect_errno()) {
 $output = '';
 if (isset($_POST["query"])) {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-	$query = "
-	SELECT * FROM products
-	WHERE name LIKE '%" . $search . "%'
-	OR id LIKE '%" . $search . "%' 
-	";
+    if ($_POST["category"] == 0) {
+        $query = "
+        SELECT * FROM products
+        WHERE name LIKE '%" . $search . "%'
+        OR id LIKE '%" . $search . "%' 
+        ";
+    }
+    else {
+        $query = "
+        SELECT * FROM products
+        WHERE name LIKE '%" . $search . "%'
+        AND type = " . $_POST['category'] . "
+        OR id LIKE '%" . $search . "%' 
+        AND type = " . $_POST['category'];
+    }
+    
 } else {
 	$query = "
-	SELECT * FROM products ORDER BY id";
+	SELECT * FROM products ORDER BY id LIMIT 100";
 }
 $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0) {

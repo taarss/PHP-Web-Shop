@@ -31,12 +31,13 @@ document.querySelector(".manageProductsBtn").onclick = e => {
     $(document).ready(function() {
 		load_data();
 
-		function load_data(query) {
+		function load_data(query, category) {
 			$.ajax({
 				url: "fetch.php",
 				method: "post",
 				data: {
-					query: query
+                    query: query,
+                    category: category
 				},
 				success: function(data) {
                     
@@ -51,7 +52,7 @@ document.querySelector(".manageProductsBtn").onclick = e => {
             var search = $(this).val();
             document.querySelectorAll('.updateProductForm').forEach(e => e.remove());
 			if (search != '') {
-				load_data(search);
+				load_data(search, document.getElementsByClassName("manageProductSearch").value);
 			} else {
 				load_data();
 			}

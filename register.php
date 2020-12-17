@@ -52,7 +52,7 @@ if ($stmt->num_rows > 0) {
 	$subject = 'Account Activation Required';
 	$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'Return-Path: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 	$activate_link = 'https://Christianvillads.tech/opgaver/webShop/activate.php?email=' . $_POST['email'] . '&code=' . $uniqid;
-	$message = '<p>Please click the following link to activate your account: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
+	$messagPleasee = '<p>Please click the following link to activate your account: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
 	mail($_POST['email'], $subject, $message, $headers);
-	echo 'Please check your email to activate your account';
+	echo ' check your email to activate your account';
 }
